@@ -1,8 +1,8 @@
 // Connect to backend server - use environment variable or default to same origin
 // For GitHub Pages, set this to your Render backend URL: const BACKEND_URL = 'https://your-app.onrender.com';
-const BACKEND_URL = window.BACKEND_URL || window.location.origin;
+const BACKEND_URL = 'wss://tic-tac-toe-bnes.onrender.com';
 const socket = io(BACKEND_URL, {
-  transports: ['websocket', 'polling']
+    transports: ['websocket', 'polling']
 });
 
 let currentRoomId = null;
@@ -322,4 +322,5 @@ function updateRoomInfo() {
 
 // Initialize
 initGameBoard();
+
 
