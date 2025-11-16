@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Multiplayer Tic-Tac-Toe</h1>
+        
+        <!-- Lobby Screen -->
+        <div id="lobby-screen" class="screen active">
+            <div class="lobby-content">
+                <div class="player-setup">
+                    <input type="text" id="player-name" placeholder="Enter your name" maxlength="20">
+                    <button id="enter-lobby-btn" class="btn btn-primary">Enter Lobby</button>
+                </div>
+
+                <div id="lobby-actions" class="hidden">
+                    <div class="create-room-section">
+                        <h2>Create Game</h2>
+                        <div class="room-type-buttons">
+                            <button id="create-public-btn" class="btn btn-success">Create Public Game</button>
+                            <button id="create-private-btn" class="btn btn-info">Create Private Game</button>
+                        </div>
+                        <div id="room-created-msg" class="hidden">
+                            <p>Room created! Room ID: <strong id="room-id-display"></strong></p>
+                            <p class="small">Share this ID with a friend to join your private game.</p>
+                            <button id="copy-room-id" class="btn btn-small">Copy Room ID</button>
+                        </div>
+                    </div>
+
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
+
+                    <div class="join-room-section">
+                        <h2>Join Game</h2>
+                        <div class="join-input-group">
+                            <input type="text" id="room-id-input" placeholder="Enter Room ID" maxlength="6">
+                            <button id="join-room-btn" class="btn btn-primary">Join Room</button>
+                        </div>
+                    </div>
+
+                    <div class="public-rooms-section">
+                        <h2>Public Games</h2>
+                        <div id="public-rooms-list" class="rooms-list">
+                            <p class="empty-message">No public games available</p>
+                        </div>
+                        <button id="refresh-rooms-btn" class="btn btn-small">Refresh</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <button id="leave-game-btn" class="btn btn-small btn-danger">Leave Game</button>
+                <div id="room-info" class="room-info"></div>
+            </div>
+
+            <div class="players-info">
+                <div id="player-x" class="player-card">
+                    <div class="player-symbol">X</div>
+                    <div class="player-name">-</div>
+                    <div class="player-status"></div>
+                </div>
+                <div class="vs">VS</div>
+                <div id="player-o" class="player-card">
+                    <div class="player-symbol">O</div>
+                    <div class="player-name">-</div>
+                    <div class="player-status"></div>
+                </div>
+            </div>
+
+            <div id="game-status" class="game-status"></div>
+
+            <div class="game-board-container">
+                <div id="game-board" class="game-board"></div>
+            </div>
+
+            <div id="rematch-section" class="hidden">
+                <button id="request-rematch-btn" class="btn btn-primary">Request Rematch</button>
+                <p id="rematch-waiting" class="hidden">Waiting for opponent...</p>
+            </div>
+        </div>
+
+        <!-- Error/Message Display -->
+        <div id="message-display" class="message-display hidden"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Configure backend URL for cross-origin deployment -->
+    <!-- For GitHub Pages + Render deployment, uncomment and set your Render backend URL: -->
+    <!-- <script>
+        window.BACKEND_URL = 'https://your-app.onrender.com';
+    </script> -->
+    <script src="client.js"></script>
+</body>
+</html>
+
